@@ -9,14 +9,20 @@ import ReportPage from "../pages/Report";
 import BasicInfo from "../pages/Create/BasicInfo";
 import ClientAccess from "../pages/Create/ClientAccess";
 import FirmAccess from "../pages/Create/FirmAccess";
-import Login from "../pages/Login";
+import Home from "../pages/Home";
+import EnterPriseLogin from "../pages/Login";
+import TRPasGroup from "../pages/TrpAsGroup";
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
       path: "/",
-      element:<Login/>
+      element: <Home />,
+    },
+    {
+      path: "/enterprise-login",
+      element: <EnterPriseLogin />,
     },
     {
       path: "/dashboard",
@@ -24,7 +30,16 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: "app", element: <DashboardAppPage /> },
-        { path: "calender", element: <CalenderPage /> },
+        {
+          path: "calender",
+          element: <CalenderPage />,
+          children: [
+            {
+              path: "trp",
+              element: <TRPasGroup />,
+            },
+          ],
+        },
         {
           path: "create",
           element: <CreatePage />,

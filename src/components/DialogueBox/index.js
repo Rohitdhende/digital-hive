@@ -9,7 +9,7 @@ const DialogueBox = (props) => {
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Unsaved Changes</DialogTitle>
-      <Button onClick={cancelNavigation}>Cancel</Button>
+      <Button onClick={()=>onClose()}>Cancel</Button>
       <Button onClick={confirmNavigation}>Confirm</Button>
     </Dialog>
   );

@@ -6,14 +6,13 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import Header from "../../components/Header";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { tabLinks } from "./config";
 import { useLocation } from "react-router-dom";
+import { Typography } from "@mui/material";
 
-const drawerWidth = 130;
 
 export default function DashboardLayout() {
   const location = useLocation();
@@ -21,16 +20,16 @@ export default function DashboardLayout() {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", maxWidth: "1440px" }}>
       <CssBaseline />
       <Header />
       <Drawer
         variant="permanent"
         sx={{
-          width: drawerWidth,
+          width: '100px',
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
+            backgroundColor:'transparent',
             boxSizing: "border-box",
           },
         }}
@@ -45,6 +44,7 @@ export default function DashboardLayout() {
             display: "flex",
             flexDirection: "column",
             padding: 0,
+            width: '100px',
           }}
         >
           {tabLinks.map((link, index) => (
@@ -61,7 +61,8 @@ export default function DashboardLayout() {
                   "&:hover": {
                     backgroundColor: "#51A8CA",
                   },
-                  padding: "2rem 0",
+                  padding: "20px 10px",
+                  gap:1
                 }}
                 onClick={() => {
                   navigate(`/dashboard/${link.path}`);
@@ -77,7 +78,17 @@ export default function DashboardLayout() {
                 >
                   <link.icon />
                 </ListItemIcon>
-                <ListItemText primary={link.text} sx={{ color: "#fff" }} />
+                <Typography
+                  sx={{
+                    color: "#fff",
+                    fontWeight: 400,
+                    fontFamily: "Arial",
+                    fontSize: "14px",
+                  
+                  }}
+                >
+                  {link.text}
+                </Typography>
               </ListItemButton>
             </ListItem>
           ))}
@@ -87,7 +98,7 @@ export default function DashboardLayout() {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+
           backgroundColor: "#C6C1BF",
           minHeight: "100vh",
         }}

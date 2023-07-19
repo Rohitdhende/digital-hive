@@ -10,6 +10,9 @@ const CreatePage = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "#F2F2F2",
+        minHeight: "100vh",
+        p: 3,
       }}
       gap={2}
     >

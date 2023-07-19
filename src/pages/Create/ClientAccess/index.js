@@ -16,7 +16,7 @@ import {
   nameValidation,
   numberValidation,
 } from "../../../validations";
-import { useUnsavedChanges } from "../../../customHooks/useUnsavedChanges";
+// import { useUnsavedChanges } from "../../../customHooks/useUnsavedChanges";
 import loader from "../../../assets/images/loading.gif";
 
 const BasicInfo = () => {
@@ -46,7 +46,6 @@ const BasicInfo = () => {
   const handleForm = (prop) => (event) => {
     let val = event.target.value.trim();
     setFormData({ ...formData, [prop]: val });
-    setDirty()
   };
   const handleFirstNameValidity = () => {
     if (
@@ -123,7 +122,7 @@ const BasicInfo = () => {
     }
   }, []);
 
-  const [Prompt, setDirty, setPristine] = useUnsavedChanges();
+  // const [Prompt, setDirty, setPristine] = useUnsavedChanges();
 
   return (
     <Box
@@ -137,7 +136,6 @@ const BasicInfo = () => {
       gap={3}
       elevation={2}
     >
-      {Prompt}
       <Box sx={{ display: "flex", alignItems: "center" }} gap={2}>
         <Typography fontWeight={500}>Client Access </Typography>
         <RadioGroup
@@ -263,7 +261,6 @@ const BasicInfo = () => {
             variant="contained"
             onClick={() => {
               handleSubmit();
-              setPristine();
             }}
           >
             Save

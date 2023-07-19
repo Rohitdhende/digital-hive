@@ -38,39 +38,9 @@ const data = [
     upcoming: 320,
     due: 4253,
   },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
-  {
-    pending: 20,
-    upcoming: 320,
-    due: 4253,
-  },
 ];
 
-const Calender = () => {
+const TRPasGroup = () => {
   return (
     <Box
       sx={{
@@ -127,11 +97,12 @@ const Calender = () => {
           sx={{
             display: "flex",
             flexWrap: "wrap",
-            gap: 2,
+            justifyContent: "space-between",
+            gap:3
           }}
         >
-          {data.map((data, index) => (
-            <GroupCard {...data} key={index} />
+          {data.map((data) => (
+            <GroupCard {...data} />
           ))}
         </Box>
       </Box>
@@ -139,4 +110,4 @@ const Calender = () => {
   );
 };
 
-export default Calender;
+export default TRPasGroup;

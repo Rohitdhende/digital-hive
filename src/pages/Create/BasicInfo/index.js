@@ -18,7 +18,7 @@ import {
   nameValidation,
   numberValidation,
 } from "../../../validations";
-import { useUnsavedChanges } from "../../../customHooks/useUnsavedChanges";
+import UnsavedChangesPrompt from "../../../components/Unsaved";
 import loader from "../../../assets/images/loading.gif";
 
 const BasicInfo = () => {
@@ -44,22 +44,18 @@ const BasicInfo = () => {
 
   const handleAddressType = (event) => {
     setAddressType(event.target.value);
-    setDirty()
   };
 
   const handlePremisesType = (event) => {
     setPremises(event.target.value);
-    setDirty()
   };
 
   const handleState = (event) => {
     setState(event.target.value);
-    setDirty()
   };
 
   const handleCity = (event) => {
     setCity(event.target.value);
-    setDirty()
   };
 
   useEffect(() => {
@@ -91,7 +87,7 @@ const BasicInfo = () => {
   const handleForm = (prop) => (event) => {
     let val = event.target.value.trim();
     setFormData({ ...formData, [prop]: val });
-    setDirty();
+    handleInputChange();
   };
   const handleNameValidity = () => {
     if (!formData.name || nameValidation().test(formData.name) === false) {
@@ -151,7 +147,16 @@ const BasicInfo = () => {
     }
   }, []);
 
-  const [Prompt, setDirty, setPristine] = useUnsavedChanges();
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+  const handleInputChange = () => {
+    setHasUnsavedChanges(true);
+  };
+
+  // const handleSaveChanges = () => {
+  //   setHasUnsavedChanges(false);
+
+  // };
 
   return (
     <Box
@@ -165,7 +170,10 @@ const BasicInfo = () => {
       gap={2}
       elevation={2}
     >
-      {Prompt}
+      <UnsavedChangesPrompt
+        when={hasUnsavedChanges}
+        message="Are you sure you want to leave this page without saving changes?"
+      />
       <Box>
         <Typography fontWeight={500}>Basic Information</Typography>
         <Box sx={{ width: "100%", display: "flex" }} gap={3}>
@@ -370,7 +378,6 @@ const BasicInfo = () => {
             variant="contained"
             onClick={() => {
               handleSubmit();
-              setPristine();
             }}
           >
             Save
